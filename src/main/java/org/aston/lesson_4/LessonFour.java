@@ -16,13 +16,13 @@ public class LessonFour {
 
         Park newPark = new Park("Sparrow Hills", "Kosygina str., 28, Moscow, Russia");
         Park.Attraction ziplineAttraction = newPark.new Attraction(
-                                                        "Zipline",
-                                                         "09:00 - 18:00",
+                                                                    "Zipline",
+                                                                     "09:00 - 18:00",
                                                                      NumberUtils.getRandomDoubleNumber(1000.00, 5000));
 
         Park.Attraction carouselAttraction = newPark.new Attraction(
-                                                        "Carousel",
-                                                         "10:00 - 19:00",
+                                                                     "Carousel",
+                                                                     "10:00 - 19:00",
                                                                      NumberUtils.getRandomDoubleNumber(1000.00, 5000));
         newPark.addAttraction(ziplineAttraction);
         newPark.addAttraction(carouselAttraction);
