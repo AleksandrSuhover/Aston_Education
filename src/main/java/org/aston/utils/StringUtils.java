@@ -8,4 +8,8 @@ public class StringUtils {
             --quantity;
         }
     }
+
+    public static String createRandomPhoneNumber(){
+        return "+" + NumberUtils.getRandomIntNumber(900000000, 100000000);
+    }
 }

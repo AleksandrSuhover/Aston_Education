@@ -15,4 +15,14 @@ public class NumberUtils {
     public static Boolean isNegative(int number){
         return number < 0;
     }
+
+    public static double getRandomDoubleNumber(double lowerRange, double upperRange){
+        upperRange -= lowerRange;
+        return (Math.random() * ++upperRange) + lowerRange;
+    }
+
+    public static int getRandomIntNumber(double lowerRange, double upperRange){
+        upperRange -= lowerRange;
+        return (int) ((Math.random() * ++upperRange) + lowerRange);
+    }
 }
