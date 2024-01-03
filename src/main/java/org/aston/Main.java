@@ -1,9 +1,9 @@
 package org.aston;
 
-import static org.aston.lesson_4.LessonFour.executeLesson4;
+import static org.aston.lesson_5.LessonFive.executeLesson5;
 
 public class Main {
     public static void main(String[] args) {
-        executeLesson4();
+        executeLesson5();
     }
 }
