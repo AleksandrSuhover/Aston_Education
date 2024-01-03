@@ -1,6 +1,9 @@
 package org.aston.utils;
 
 import org.aston.lesson_4.Employee;
+import org.aston.lesson_5.Cat;
+
+import java.util.ArrayList;
 
 public class ObjectUtils {
 
@@ -21,6 +24,18 @@ public class ObjectUtils {
                              StringUtils.createRandomPhoneNumber(),
                              NumberUtils.getRandomDoubleNumber(100, 2000),
                              NumberUtils.getRandomIntNumber(18, 70));
+    }
+
+    public static ArrayList<Cat> createArrayTestCat(int lengthArray){
+        ArrayList<Cat> catsArray = new ArrayList<Cat>();
+        for(int i = 0; i < lengthArray; i++){
+            catsArray.add(createTestCat(i));
+        }
+        return catsArray;
+    }
+
+    public static Cat createTestCat(int numberCat){
+     return new Cat("Test_cat_" + numberCat);
     }
 
 }
