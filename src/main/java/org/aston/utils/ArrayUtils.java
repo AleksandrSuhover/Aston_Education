@@ -1,7 +1,5 @@
 package org.aston.utils;
 
-import org.aston.lesson_4.Employee;
-
 import java.util.Arrays;
 
 public class ArrayUtils {
@@ -48,7 +46,7 @@ public class ArrayUtils {
             --lengthArray;
             squareArray[i][i] = 1;
             squareArray[i][lengthArray] = 1;
-            System.out.println(Arrays.toString(squareArray[i]));
+//            System.out.println(Arrays.toString(squareArray[i]));
         }
         return squareArray;
     }
