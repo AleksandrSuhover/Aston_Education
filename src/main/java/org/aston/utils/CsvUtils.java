@@ -1,7 +1,6 @@
 package org.aston.utils;
 
 import org.aston.lesson_6.AppData;
-
 import java.io.BufferedWriter;
 import java.io.IOException;
 import java.nio.file.Files;
@@ -24,16 +23,14 @@ public class CsvUtils {
             bufferedWriter.write(String.join(";,", appData.getHeader()));
             bufferedWriter.newLine();
 
-            Arrays.stream(appData.getData()).forEach((row) -> {
-                List<String> collect = Arrays.stream(row).boxed().map(Object::toString).collect(Collectors.toList());
-                try {
-                    bufferedWriter.write(String.join(";,", collect));
-                    bufferedWriter.newLine();;
-                } catch (IOException e) {
-                    throw new RuntimeException(e);
-                }
-            });
-
+            for (int[] row : appData.getData()) {
+                List<String> rowData = Arrays.stream(row)
+                                                        .boxed()
+                                                        .map(Object::toString)
+                                                        .collect(Collectors.toList());
+                    bufferedWriter.write(String.join(";,", rowData));
+                    bufferedWriter.newLine();
+            }
             bufferedWriter.flush();
         } catch (Exception e) {
             e.printStackTrace();
@@ -50,8 +47,7 @@ public class CsvUtils {
 
         AppData appData = new AppData();
 
-        String[] headers = Arrays
-                .stream(strings.get(0).split(","))
+        String[] headers = Arrays.stream(strings.get(0).split(","))
                 .map((value) -> value.replace(";", ""))
                 .toArray(String[]::new);
         appData.setHeader(headers);

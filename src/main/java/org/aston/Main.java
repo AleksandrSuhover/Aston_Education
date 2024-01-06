@@ -1,6 +1,5 @@
 package org.aston;
 
-import java.io.FileNotFoundException;
 import java.io.IOException;
 
 import static org.aston.lesson_6.LessonSix.executeLesson6;
