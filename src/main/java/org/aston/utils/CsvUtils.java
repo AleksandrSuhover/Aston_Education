@@ -1,6 +1,7 @@
 package org.aston.utils;
 
 import org.aston.lesson_6.AppData;
+
 import java.io.BufferedWriter;
 import java.io.IOException;
 import java.nio.file.Files;
@@ -28,8 +29,8 @@ public class CsvUtils {
                                                         .boxed()
                                                         .map(Object::toString)
                                                         .collect(Collectors.toList());
-                    bufferedWriter.write(String.join(";,", rowData));
-                    bufferedWriter.newLine();
+                bufferedWriter.write(String.join(";,", rowData));
+                bufferedWriter.newLine();
             }
             bufferedWriter.flush();
         } catch (Exception e) {
@@ -54,13 +55,13 @@ public class CsvUtils {
 
         strings.remove(0);
 
-        List<int []> data = new ArrayList<>();
+        List<int[]> data = new ArrayList<>();
 
         strings.forEach((row) -> {
             int[] integers = Arrays.stream(row.split(","))
-                    .map((value) -> value.replace(";", ""))
-                    .mapToInt(Integer::valueOf)
-                    .toArray();
+                                                                .map((value) -> value.replace(";", ""))
+                                                                .mapToInt(Integer::valueOf)
+                                                                .toArray();
             data.add(integers);
         });
 
