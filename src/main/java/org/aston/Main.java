@@ -1,9 +1,11 @@
 package org.aston;
 
-import static org.aston.lesson_5.LessonFive.executeLesson5;
+import java.io.IOException;
+
+import static org.aston.lesson_6.LessonSix.executeLesson6;
 
 public class Main {
-    public static void main(String[] args) {
-        executeLesson5();
+    public static void main(String[] args) throws IOException {
+        executeLesson6();
     }
 }
