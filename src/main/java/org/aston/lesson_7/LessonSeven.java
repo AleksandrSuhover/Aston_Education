@@ -11,9 +11,9 @@ public class LessonSeven {
             for (int j = 0; j < arrString[i].length; j++) {
                 try {
                     sumResult += Integer.parseInt(arrString[i][j]);
-                } catch (Exception e) {
+                } catch (NumberFormatException e) {
                     String msg = "Error converting String to int, array element under indexes: [" + i + "][" + j + "].";
-                    throw new MyArrayDataException(msg);
+                    throw new MyArrayDataException(msg, e);
                 }
             }
         }

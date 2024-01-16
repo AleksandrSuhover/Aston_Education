@@ -18,8 +18,9 @@ public class Main {
         arrayString[1][3] = "s";
         try {
             System.out.println(LessonSeven.executeLesson7(arrayString, 4));
-        } catch (MyArraySizeException | MyArrayDataException exception) {
-            System.out.println(exception.getMessage());
+        } catch (MyArrayDataException | MyArraySizeException ex) {
+            System.out.println(ex.getMessage());
+            System.out.println(ex.getCause());
         }
     }
 }
