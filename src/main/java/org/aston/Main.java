@@ -19,8 +19,7 @@ public class Main {
         try {
             System.out.println(LessonSeven.executeLesson7(arrayString, 4));
         } catch (MyArrayDataException | MyArraySizeException ex) {
-            System.out.println(ex.getMessage());
-            System.out.println(ex.getCause());
+            ex.printStackTrace();
         }
     }
 }
