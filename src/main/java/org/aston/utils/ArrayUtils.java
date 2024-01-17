@@ -46,7 +46,6 @@ public class ArrayUtils {
             --lengthArray;
             squareArray[i][i] = 1;
             squareArray[i][lengthArray] = 1;
-//            System.out.println(Arrays.toString(squareArray[i]));
         }
         return squareArray;
     }
@@ -55,6 +54,16 @@ public class ArrayUtils {
         int[] dynamicArray = new int[len];
         Arrays.fill(dynamicArray, initialValue);
         return dynamicArray;
+    }
+
+    public static String[][] createDoubleArrayStringWithNumbers(int upperArrayLength, int nestedArrayLength){
+        String[][] arrayString = new String[upperArrayLength][nestedArrayLength];
+        for (int i = 0; i < arrayString.length; i++) {
+            for (int j = 0; j < arrayString[i].length; j++) {
+                arrayString[i][j] = String.valueOf(j);
+            }
+        }
+        return arrayString;
     }
 
 }
