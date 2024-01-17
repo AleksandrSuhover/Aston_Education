@@ -1,6 +1,9 @@
 package org.aston.utils;
 
+import java.util.ArrayList;
 import java.util.Arrays;
+import java.util.HashSet;
+import java.util.Set;
 
 public class ArrayUtils {
 
@@ -65,5 +68,23 @@ public class ArrayUtils {
         }
         return arrayString;
     }
+
+    public static ArrayList<String> createArrayStringWithDuplicates(int quantityValue, int repeatValue){
+        ArrayList<String> result = new ArrayList<>();
+        if(quantityValue <= 0) return result;
+
+        for(int i = 0; i < quantityValue; i++){
+            result.add("TestString" + i);
+            if(i < repeatValue) result.add("TestString" + i);
+        }
+        return result;
+    }
+
+//    public static HashSet<String> getUniqueValueFromArrayString(ArrayList<String> arrayList){
+//        if(arrayList.size() == 0) return new HashSet<>();
+//        ArrayList<String> result = new ArrayList<>();
+//        return new HashSet<>(arrayList);
+//
+//    }
 
 }
