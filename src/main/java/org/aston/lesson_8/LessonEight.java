@@ -19,6 +19,14 @@ public class LessonEight {
 
         resultMap.forEach((k, v) -> System.out.println(k + ": " + v));
 
+        PhoneBook testPhoneBook = new PhoneBook();
+        testPhoneBook.addPhoneToBook("Petrov", "375336082799");
+        testPhoneBook.addPhoneToBook("Sidorov", "375336222799");
+        testPhoneBook.addPhoneToBook("Petrov", "375336087788");
+        testPhoneBook.addPhoneToBook("Krutov", "375336083399");
+
+        System.out.println(testPhoneBook.getPhoneByLastName("Petrov"));
+
 
     }
 }

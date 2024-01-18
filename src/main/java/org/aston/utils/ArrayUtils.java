@@ -70,8 +70,8 @@ public class ArrayUtils {
     }
 
     public static ArrayList<String> createArrayStringWithDuplicates(int quantityValue, int repeatValue){
+        if(quantityValue <= 0) return new ArrayList<>();
         ArrayList<String> result = new ArrayList<>();
-        if(quantityValue <= 0) return result;
 
         for(int i = 0; i < quantityValue; i++){
             result.add("TestString" + i);
@@ -79,12 +79,5 @@ public class ArrayUtils {
         }
         return result;
     }
-
-//    public static HashSet<String> getUniqueValueFromArrayString(ArrayList<String> arrayList){
-//        if(arrayList.size() == 0) return new HashSet<>();
-//        ArrayList<String> result = new ArrayList<>();
-//        return new HashSet<>(arrayList);
-//
-//    }
 
 }
