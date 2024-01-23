@@ -1,9 +1,8 @@
 package org.aston.utils;
 
-import java.util.ArrayList;
-import java.util.Arrays;
-import java.util.HashSet;
-import java.util.Set;
+import java.util.*;
+import java.util.function.Predicate;
+import java.util.stream.Collectors;
 
 public class ArrayUtils {
 
@@ -80,4 +79,39 @@ public class ArrayUtils {
         return result;
     }
 
+    public static ArrayList<Integer> createArrayWithRandomNumbers(int lengthArray, int minValue, int maxValue){
+        if(lengthArray <= 0) return new ArrayList<>();
+
+        ArrayList<Integer> arrayNumbers = new ArrayList<>();
+        for (int i = 0; i < lengthArray; i++){
+            arrayNumbers.add(minValue + (int) (Math.random() * (maxValue - minValue + 1)));
+        }
+        return arrayNumbers;
+    }
+
+    public static ArrayList<Integer> getOnlyValidNumbersFromArray(ArrayList<Integer> arrayNumbers, Predicate<Integer> func){
+        if (arrayNumbers.size() == 0) return new ArrayList<>();
+
+        return (ArrayList<Integer>) arrayNumbers.stream()
+                                                .filter(func)
+                                                .collect(Collectors.toList());
+    }
+
+    public static long getCountSearchValueInList(List<String> stringArrayList, String searchValue){
+        return stringArrayList.stream().filter(el -> Objects.equals(el, searchValue)).count();
+    }
+
+    public static String getFirstValueInListString(List<String> list){
+        return list.isEmpty() ? "0" : list.get(0);
+    }
+
+    public static String getLastValueInListString(List<String> list){
+        return list.isEmpty() ? "0" : list.get(list.size() - 1);
+    }
+
+    public static String[] sortSpecificListString(List<String> list) {
+        return list.stream()
+                   .sorted(Comparator.comparingInt(value -> Integer.parseInt(value.substring(1))))
+                   .toArray(String[]::new);
+    }
 }
