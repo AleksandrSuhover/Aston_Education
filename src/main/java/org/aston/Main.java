@@ -1,6 +1,5 @@
 package org.aston;
 
-
 import org.aston.lesson_12_testng.LessonTwelveTestng;
 
 public class Main {
