@@ -16,7 +16,7 @@ public class LessonTwelveTestngTest {
         };
     }
 
-    @Test(dataProvider = "factorialNumbers")
+    @Test(dataProvider = "factorialNumbers", testName = "Получение факториала числа")
     void testGetFactorialNumber(int expectedValue, int transmittedNum){
         Assert.assertEquals(expectedValue, LessonTwelveTestng.getFactorialNumber(transmittedNum));
     }
