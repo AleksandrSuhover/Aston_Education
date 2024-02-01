@@ -9,17 +9,13 @@ public class Box<T extends Fruit>  {
         this.listFruits = listFruits;
     }
 
-    public void addFruitsToBox(T fruit ){
+    public void addFruitToBox(T fruit ){
         this.listFruits.add(fruit);
-    }
-
-    public List<T> getListFruits() {
-        return listFruits;
     }
 
     public double getWeight(){
         return this.listFruits.isEmpty() ? 0
-                                    : this.listFruits.size() * this.listFruits.get(0).getWEIGHT_FRUIT();
+                                         : this.listFruits.size() * this.listFruits.get(0).getWeight();
     }
 
     public boolean compare(Box<?> secondBox){
@@ -28,7 +24,7 @@ public class Box<T extends Fruit>  {
 
     public void putFruitInAnotherBox(Box<T> secondBox){
         for(T fruit : this.listFruits){
-            secondBox.addFruitsToBox(fruit);
+            secondBox.addFruitToBox(fruit);
         }
         this.listFruits.clear();
     }
