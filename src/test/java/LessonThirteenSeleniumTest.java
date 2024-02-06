@@ -22,7 +22,7 @@ public class LessonThirteenSeleniumTest {
         btnAgreeCookie.click();
     }
 
-    @AfterSuite
+    @AfterClass
     public void afterClass(){
         driver.quit();
     }
@@ -37,7 +37,7 @@ public class LessonThirteenSeleniumTest {
 
     @Test(priority = 1, testName = "Проверка наличия баннеров партнеров")
     @Parameters("quantityBannersPartners")
-    public static void testCheckPartnersBanner(int quantityBannersPartners){
+    public static void testCheckPartnersBanner(@Optional("6") int quantityBannersPartners){
         List<WebElement> partnersElements = driver.findElements(By.xpath("//div[@class='pay__partners']//li"));
 
         Assert.assertEquals(partnersElements.size(), quantityBannersPartners);
