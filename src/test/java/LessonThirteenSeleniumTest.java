@@ -36,10 +36,11 @@ public class LessonThirteenSeleniumTest {
     }
 
     @Test(priority = 1, testName = "Проверка наличия баннеров партнеров")
-    public static void testCheckPartnersBanner(){
+    @Parameters("quantityBannersPartners")
+    public static void testCheckPartnersBanner(int quantityBannersPartners){
         List<WebElement> partnersElements = driver.findElements(By.xpath("//div[@class='pay__partners']//li"));
 
-        Assert.assertEquals(partnersElements.size(), 6);
+        Assert.assertEquals(partnersElements.size(), quantityBannersPartners);
         for(WebElement partner : partnersElements){
             Assert.assertTrue(partner.isDisplayed());
         }
