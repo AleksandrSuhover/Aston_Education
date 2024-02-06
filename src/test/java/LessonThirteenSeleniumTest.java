@@ -1,4 +1,5 @@
 import io.github.bonigarcia.wdm.WebDriverManager;
+import org.aston.utils.StringUtils;
 import org.openqa.selenium.By;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
@@ -13,7 +14,7 @@ public class LessonThirteenSeleniumTest {
     static WebDriver driver;
 
     @BeforeSuite
-    public void BeforeTest(){
+    public void beforeSuite(){
         WebDriverManager.chromedriver().setup();
         driver = new ChromeDriver();
         driver.get("https://www.mts.by/");
@@ -22,21 +23,19 @@ public class LessonThirteenSeleniumTest {
     }
 
     @AfterSuite
-    public void AfterTest(){
+    public void afterSuite(){
         driver.quit();
     }
 
-    @Test
+    @Test(priority = 1, testName = "Проверка заголовка онлайн пополнения")
     public static void testCheckPayWrapperHeader(){
-        driver.manage().timeouts().implicitlyWait(5, TimeUnit.SECONDS);
         WebElement payWrapperHeader = driver.findElement(By.xpath("//div[@class='pay__wrapper']//h2"));
-        String headerWindow =  payWrapperHeader.getText().replaceAll("\n", " ");
-        Assert.assertEquals(headerWindow, "Онлайн пополнение без комиссии");
+
+        Assert.assertEquals(StringUtils.deleteSpacesAndLineBreak(payWrapperHeader.getText()), "Онлайн пополнение без комиссии");
     }
 
-    @Test
+    @Test(priority = 1, testName = "Проверка наличия баннеров партнеров")
     public static void testCheckPartnersBanner(){
-        driver.manage().timeouts().implicitlyWait(5, TimeUnit.SECONDS);
         List<WebElement> partnersElements = driver.findElements(By.xpath("//div[@class='pay__partners']//li"));
 
         Assert.assertEquals(partnersElements.size(), 6);
@@ -45,22 +44,34 @@ public class LessonThirteenSeleniumTest {
         }
     }
 
-//    @Test
-//    public static void testCheckLinkInPayWrapper(){
-//        List<WebElement> linksWrapper = driver.findElements(By.xpath("//div[@class='pay__wrapper']//a"));
-//        for(WebElement link : linksWrapper){
-//            String urlLink = link.getAttribute("href");
-//
-//        }
-//    }
-
-    @Test
+    @Test(priority = 2, testName = "Проверка работоспособности ссылки 'Подробнее о сервисе'")
     public static void testCheckLinkInPayWrapper(){
-        driver.manage().timeouts().implicitlyWait(5, TimeUnit.SECONDS);
         WebElement linksWrapper = driver.findElement(By.xpath("//div[@class='pay__wrapper']//a"));
-        linksWrapper.click();
-        System.out.println(driver.getCurrentUrl());
-        Assert.assertEquals(driver.getCurrentUrl(), "https://www.mts.by/help/poryadok-oplaty-i-bezopasnost-internet-platezhey/");
 
+        linksWrapper.click();
+        Assert.assertEquals(driver.getCurrentUrl(), "https://www.mts.by/help/poryadok-oplaty-i-bezopasnost-internet-platezhey/");
+        driver.get("https://www.mts.by/");
+    }
+
+    @Test(priority = 3, testName = "Проверка работоспособности формы пополнения счёта")
+    public static void testReplenishmentAccount(){
+        WebElement inputPhoneNumber = driver.findElement(By.id("connection-phone"));
+        WebElement inputReplenishmentAmount = driver.findElement(By.id("connection-sum"));
+        WebElement btnContinue = driver.findElement(By.xpath("//div[@class='pay__wrapper']//button[contains(text(), 'Продолжить')]"));
+
+        inputPhoneNumber.click();
+        inputPhoneNumber.sendKeys("297777777");
+
+        inputReplenishmentAmount.click();
+        inputReplenishmentAmount.sendKeys("100");
+
+        Assert.assertTrue(btnContinue.isEnabled());
+        btnContinue.click();
+
+        driver.manage().timeouts().implicitlyWait(5, TimeUnit.SECONDS);
+        driver.switchTo().frame(driver.findElement(By.xpath("//iframe[@class='bepaid-iframe']")));
+        WebElement testBtn = driver.findElement(By.xpath("//p[@class='header__payment-info']"));
+
+        Assert.assertEquals("Оплата: Услуги связи Номер:375297777777", StringUtils.deleteSpacesAndLineBreak(testBtn.getAttribute("textContent")));
     }
 }
