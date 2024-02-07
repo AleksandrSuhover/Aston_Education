@@ -72,7 +72,7 @@ public class LessonThirteenSeleniumTest {
         Assert.assertTrue(btnContinue.isEnabled());
         btnContinue.click();
 
-        driver.manage().timeouts().implicitlyWait(5, TimeUnit.SECONDS);
+        driver.manage().timeouts().implicitlyWait(10, TimeUnit.SECONDS);
         driver.switchTo().frame(driver.findElement(By.xpath("//iframe[@class='bepaid-iframe']")));
         WebElement headerFrame = driver.findElement(By.xpath("//p[@class='header__payment-info']"));
 
