@@ -12,4 +12,8 @@ public class StringUtils {
     public static String createRandomPhoneNumber(){
         return "+" + NumberUtils.getRandomIntNumber(900000000, 100000000);
     }
+
+    public static String deleteSpacesAndLineBreak(String stringValue){
+        return stringValue.replaceAll("\n", " ").trim();
+    }
 }
