@@ -11,7 +11,7 @@ import java.util.List;
 import java.util.concurrent.TimeUnit;
 
 public class LessonThirteenSeleniumTest {
-    static WebDriver driver;
+    private WebDriver driver;
 
     @BeforeClass
     public void beforeClass(){
@@ -29,7 +29,7 @@ public class LessonThirteenSeleniumTest {
 
     @Test(priority = 1, testName = "Проверка заголовка онлайн пополнения")
     @Parameters("headerPayWindow")
-    public static void testCheckPayWrapperHeader(@Optional("Онлайн пополнение без комиссии") String headerPayWindow){
+    public void testCheckPayWrapperHeader(@Optional("Онлайн пополнение без комиссии") String headerPayWindow){
         WebElement payWrapperHeader = driver.findElement(By.xpath("//div[@class='pay__wrapper']//h2"));
 
         Assert.assertEquals(StringUtils.deleteSpacesAndLineBreak(payWrapperHeader.getText()), headerPayWindow);
@@ -37,7 +37,7 @@ public class LessonThirteenSeleniumTest {
 
     @Test(priority = 1, testName = "Проверка наличия баннеров партнеров")
     @Parameters("quantityBannersPartners")
-    public static void testCheckPartnersBanner(@Optional("6") int quantityBannersPartners){
+    public void testCheckPartnersBanner(@Optional("6") int quantityBannersPartners){
         List<WebElement> partnersElements = driver.findElements(By.xpath("//div[@class='pay__partners']//li"));
 
         Assert.assertEquals(partnersElements.size(), quantityBannersPartners);
@@ -48,7 +48,7 @@ public class LessonThirteenSeleniumTest {
 
     @Test(priority = 2, testName = "Проверка работоспособности ссылки 'Подробнее о сервисе'")
     @Parameters("urlInfoService")
-    public static void testCheckLinkInPayWrapper(@Optional String urlInfoService){
+    public void testCheckLinkInPayWrapper(@Optional String urlInfoService){
         WebElement linksWrapper = driver.findElement(By.xpath("//div[@class='pay__wrapper']//a"));
 
         linksWrapper.click();
@@ -58,7 +58,7 @@ public class LessonThirteenSeleniumTest {
 
     @Test(priority = 3, testName = "Проверка работоспособности формы пополнения счёта")
     @Parameters({"phoneNumber", "amountOfPayment"})
-    public static void testReplenishmentAccount(@Optional("297777777") String phoneNumber, @Optional("10") String amountOfPayment){
+    public void testReplenishmentAccount(@Optional("297777777") String phoneNumber, @Optional("10") String amountOfPayment){
         WebElement inputPhoneNumber = driver.findElement(By.id("connection-phone"));
         WebElement inputReplenishmentAmount = driver.findElement(By.id("connection-sum"));
         WebElement btnContinue = driver.findElement(By.xpath("//div[@class='pay__wrapper']//button[contains(text(), 'Продолжить')]"));
