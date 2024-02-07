@@ -16,4 +16,6 @@ public class StringUtils {
     public static String deleteSpacesAndLineBreak(String stringValue){
         return stringValue.replaceAll("\n", " ").trim();
     }
+
+//    public static String returnOnlyAmountPay
 }
