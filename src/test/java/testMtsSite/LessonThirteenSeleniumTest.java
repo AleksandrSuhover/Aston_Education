@@ -6,6 +6,7 @@ import org.openqa.selenium.WebElement;
 import org.testng.Assert;
 import org.testng.annotations.*;
 
+import java.time.Duration;
 import java.util.List;
 
 public class LessonThirteenSeleniumTest extends BaseTest {
@@ -56,6 +57,7 @@ public class LessonThirteenSeleniumTest extends BaseTest {
         btnContinue.click();
 
         getDriver().switchTo().frame(getDriver().findElement(By.xpath("//iframe[@class='bepaid-iframe']")));
+        getDriver().manage().timeouts().implicitlyWait(Duration.ofSeconds(5));
         WebElement headerFrame = getDriver().findElement(By.xpath("//p[@class='header__payment-info']"));
 
         Assert.assertEquals("Оплата: Услуги связи Номер:375" + phoneNumber, StringUtils.deleteSpacesAndLineBreak(headerFrame.getAttribute("textContent")));

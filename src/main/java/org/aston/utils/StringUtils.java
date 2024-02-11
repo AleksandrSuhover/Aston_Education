@@ -17,5 +17,7 @@ public class StringUtils {
         return stringValue.replaceAll("\n", " ").trim();
     }
 
-//    public static String returnOnlyAmountPay
+    public static String returnOnlyAmountPayValue(String stringValue){
+        return stringValue.replaceAll("[a-zA-Zа-яА-Я\\\\n:]*", "").trim();
+    }
 }
