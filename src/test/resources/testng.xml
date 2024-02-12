@@ -8,7 +8,7 @@
         <parameter name="phoneNumber" value="297777777"></parameter>
         <parameter name="amountOfPayment" value="100"></parameter>
         <classes>
-            <class name="LessonThirteenSeleniumTest"></class>
+            <class name="testMtsSite.LessonThirteenSeleniumTest"></class>
         </classes>
     </test>
 </suite>
