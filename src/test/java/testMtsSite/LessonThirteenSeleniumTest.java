@@ -1,36 +1,20 @@
-import io.github.bonigarcia.wdm.WebDriverManager;
+package testMtsSite;
+
 import org.aston.utils.StringUtils;
 import org.openqa.selenium.By;
-import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
-import org.openqa.selenium.chrome.ChromeDriver;
 import org.testng.Assert;
 import org.testng.annotations.*;
 
+import java.time.Duration;
 import java.util.List;
-import java.util.concurrent.TimeUnit;
 
-public class LessonThirteenSeleniumTest {
-    private WebDriver driver;
-
-    @BeforeClass
-    public void beforeClass(){
-        WebDriverManager.chromedriver().setup();
-        driver = new ChromeDriver();
-        driver.get("https://www.mts.by/");
-        WebElement btnAgreeCookie = driver.findElement(By.id("cookie-agree"));
-        btnAgreeCookie.click();
-    }
-
-    @AfterClass
-    public void afterClass(){
-        driver.quit();
-    }
+public class LessonThirteenSeleniumTest extends BaseTest {
 
     @Test(priority = 1, testName = "Проверка заголовка онлайн пополнения")
     @Parameters("headerPayWindow")
     public void testCheckPayWrapperHeader(@Optional("Онлайн пополнение без комиссии") String headerPayWindow){
-        WebElement payWrapperHeader = driver.findElement(By.xpath("//div[@class='pay__wrapper']//h2"));
+        WebElement payWrapperHeader = getDriver().findElement(By.xpath("//div[@class='pay__wrapper']//h2"));
 
         Assert.assertEquals(StringUtils.deleteSpacesAndLineBreak(payWrapperHeader.getText()), headerPayWindow);
     }
@@ -38,7 +22,7 @@ public class LessonThirteenSeleniumTest {
     @Test(priority = 1, testName = "Проверка наличия баннеров партнеров")
     @Parameters("quantityBannersPartners")
     public void testCheckPartnersBanner(@Optional("6") int quantityBannersPartners){
-        List<WebElement> partnersElements = driver.findElements(By.xpath("//div[@class='pay__partners']//li"));
+        List<WebElement> partnersElements = getDriver().findElements(By.xpath("//div[@class='pay__partners']//li"));
 
         Assert.assertEquals(partnersElements.size(), quantityBannersPartners);
         for(WebElement partner : partnersElements){
@@ -49,19 +33,19 @@ public class LessonThirteenSeleniumTest {
     @Test(priority = 2, testName = "Проверка работоспособности ссылки 'Подробнее о сервисе'")
     @Parameters("urlInfoService")
     public void testCheckLinkInPayWrapper(@Optional String urlInfoService){
-        WebElement linksWrapper = driver.findElement(By.xpath("//div[@class='pay__wrapper']//a"));
+        WebElement linksWrapper = getDriver().findElement(By.xpath("//div[@class='pay__wrapper']//a"));
 
         linksWrapper.click();
-        Assert.assertEquals(driver.getCurrentUrl(), urlInfoService);
-        driver.get("https://www.mts.by/");
+        Assert.assertEquals(getDriver().getCurrentUrl(), urlInfoService);
+        getDriver().get("https://www.mts.by/");
     }
 
     @Test(priority = 3, testName = "Проверка работоспособности формы пополнения счёта")
     @Parameters({"phoneNumber", "amountOfPayment"})
     public void testReplenishmentAccount(@Optional("297777777") String phoneNumber, @Optional("10") String amountOfPayment){
-        WebElement inputPhoneNumber = driver.findElement(By.id("connection-phone"));
-        WebElement inputReplenishmentAmount = driver.findElement(By.id("connection-sum"));
-        WebElement btnContinue = driver.findElement(By.xpath("//div[@class='pay__wrapper']//button[contains(text(), 'Продолжить')]"));
+        WebElement inputPhoneNumber = getDriver().findElement(By.id("connection-phone"));
+        WebElement inputReplenishmentAmount = getDriver().findElement(By.id("connection-sum"));
+        WebElement btnContinue = getDriver().findElement(By.xpath("//div[@class='pay__wrapper']//button[contains(text(), 'Продолжить')]"));
 
         inputPhoneNumber.click();
         inputPhoneNumber.sendKeys(phoneNumber);
@@ -72,9 +56,9 @@ public class LessonThirteenSeleniumTest {
         Assert.assertTrue(btnContinue.isEnabled());
         btnContinue.click();
 
-        driver.manage().timeouts().implicitlyWait(10, TimeUnit.SECONDS);
-        driver.switchTo().frame(driver.findElement(By.xpath("//iframe[@class='bepaid-iframe']")));
-        WebElement headerFrame = driver.findElement(By.xpath("//p[@class='header__payment-info']"));
+        getDriver().switchTo().frame(getDriver().findElement(By.xpath("//iframe[@class='bepaid-iframe']")));
+        getDriver().manage().timeouts().implicitlyWait(Duration.ofSeconds(5));
+        WebElement headerFrame = getDriver().findElement(By.xpath("//p[@class='header__payment-info']"));
 
         Assert.assertEquals("Оплата: Услуги связи Номер:375" + phoneNumber, StringUtils.deleteSpacesAndLineBreak(headerFrame.getAttribute("textContent")));
     }
