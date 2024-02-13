@@ -58,7 +58,7 @@ public class LessonFourTeenTestngTest extends BaseTest {
 
     @Test(testName = "Проверка иконок партнёров внутри фрейма 'Оплата: Услуги связи'", dataProvider = "iconsPartnersFrame")
     public void testIconsPartnersInFramePayment(String srcIcon){
-        if(srcIcon == "mastercard"){
+        if(Objects.equals(srcIcon, "mastercard")){
             mtsHomePage
                     .enterPhoneNumber()
                     .enterPaymentAmount()
