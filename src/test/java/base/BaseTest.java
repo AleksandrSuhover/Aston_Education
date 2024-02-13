@@ -13,15 +13,15 @@ public class BaseTest {
     protected MtsHomePage mtsHomePage = new MtsHomePage(driver);
     protected MtsAboutServicePage mtsAboutServicePage = new MtsAboutServicePage(driver);
 
-    @BeforeSuite
-    public void beforeMethod(){
+    @BeforeClass
+    public void beforeClass(){
         driver.manage().deleteAllCookies();
         basePage.open("https://mts.by");
         mtsHomePage.acceptCookies();
     }
 
-    @AfterSuite
-    public void afterMethod() {
+    @AfterClass
+    public void afterClass() {
         driver.quit();
     }
 }

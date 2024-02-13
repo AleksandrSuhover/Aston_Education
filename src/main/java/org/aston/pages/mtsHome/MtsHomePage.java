@@ -29,6 +29,14 @@ public class MtsHomePage extends BasePage {
     By inputCVCFrame = By.xpath("//div[@class='content ng-tns-c47-5']");
     By inputOwnerNameFrame = By.xpath("//div[@class='content ng-tns-c47-3']");
 
+    By mastercardIconFrame = By.xpath("//img[contains(@src,'mastercard-system')]");
+    By visaIconFrame = By.xpath("//img[contains(@src,'mastercard-system')]");
+    By belkartIconFrame = By.xpath("//img[contains(@src,'mastercard-system')]");
+    By mirIconFrame = By.xpath("//img[contains(@src,'mastercard-system')]");
+    By maestroIconFrame = By.xpath("//img[contains(@src,'mastercard-system')]");
+
+
+
 
     public void acceptCookies(){
         driver.findElement(btnCookieAgree).click();
@@ -98,4 +106,21 @@ public class MtsHomePage extends BasePage {
         return driver.findElement(inputOwnerNameFrame).getText();
     }
 
+    public WebElement getMastercardIconFrame(){return driver.findElement(mastercardIconFrame);}
+
+    public WebElement getVisaIconFrame(){
+        return driver.findElement(visaIconFrame);
+    }
+
+    public WebElement getBelkartIconFrame(){
+        return driver.findElement(belkartIconFrame);
+    }
+
+    public WebElement getMirIconFrame(){
+        return driver.findElement(mirIconFrame);
+    }
+
+    public WebElement getMaestroIconFrame(){
+        return driver.findElement(maestroIconFrame);
+    }
 }

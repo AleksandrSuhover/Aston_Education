@@ -7,6 +7,7 @@ import org.openqa.selenium.WebElement;
 import org.testng.Assert;
 import org.testng.annotations.DataProvider;
 import org.testng.annotations.Test;
+import org.testng.asserts.SoftAssert;
 
 import java.util.Objects;
 
@@ -51,21 +52,20 @@ public class LessonFourTeenTestngTest extends BaseTest {
         Assert.assertEquals(mtsHomePage.getInputOwnerNameFrame(), "Имя держателя (как на карте)");
     }
 
-    @DataProvider(name = "iconsPartnersFrame")
-    public Object[][] iconsPartnersFrame() {
-        return new String[][] {{"mastercard"}, {"visa"}, {"belkart"}, {"mir"}, {"maestro"}};
-    }
+    @Test(testName = "Проверка иконок партнёров внутри фрейма 'Оплата: Услуги связи'")
+    public void testIconsPartnersInFramePayment(){
+        mtsHomePage
+                .enterPhoneNumber()
+                .enterPaymentAmount()
+                .clickContinueBtn()
+                .switchOnPaymentFrame();
 
-    @Test(testName = "Проверка иконок партнёров внутри фрейма 'Оплата: Услуги связи'", dataProvider = "iconsPartnersFrame")
-    public void testIconsPartnersInFramePayment(String srcIcon){
-        if(Objects.equals(srcIcon, "mastercard")){
-            mtsHomePage
-                    .enterPhoneNumber()
-                    .enterPaymentAmount()
-                    .clickContinueBtn()
-                    .switchOnPaymentFrame();
-        }
-        WebElement iconPartner = mtsHomePage.waitElementIsVisible(driver.findElement(By.xpath("//img[contains(@src,'" + srcIcon + "-system')]")));
-        Assert.assertTrue(iconPartner.isDisplayed());
+        SoftAssert softAssert = new SoftAssert();
+        softAssert.assertTrue(basePage.waitElementIsVisible(mtsHomePage.getMastercardIconFrame()).isDisplayed(), "Логотип Mastercard не отображается");
+        softAssert.assertTrue(basePage.waitElementIsVisible(mtsHomePage.getVisaIconFrame()).isDisplayed(), "Логотип Visa не отображается");
+        softAssert.assertTrue(basePage.waitElementIsVisible(mtsHomePage.getBelkartIconFrame()).isDisplayed(), "Логотип Belkart не отображается");
+        softAssert.assertTrue(basePage.waitElementIsVisible(mtsHomePage.getMirIconFrame()).isDisplayed(), "Логотип Mir не отображается");
+        softAssert.assertTrue(basePage.waitElementIsVisible(mtsHomePage.getMaestroIconFrame()).isDisplayed(), "Логотип Maestro не отображается");
+        softAssert.assertAll();
     }
 }
