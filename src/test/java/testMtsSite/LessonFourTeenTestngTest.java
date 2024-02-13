@@ -2,14 +2,10 @@ package testMtsSite;
 
 import base.BaseTest;
 import org.aston.utils.StringUtils;
-import org.openqa.selenium.By;
-import org.openqa.selenium.WebElement;
 import org.testng.Assert;
 import org.testng.annotations.DataProvider;
 import org.testng.annotations.Test;
 import org.testng.asserts.SoftAssert;
-
-import java.util.Objects;
 
 import static org.aston.common.Config.AMOUNT_PAYMENT;
 import static org.aston.common.Config.PHONE_NUMBER;
