@@ -1,4 +1,4 @@
-package testMtsSite;
+package testWildberriesSite;
 
 import base.BaseTest;
 import org.testng.annotations.Test;
