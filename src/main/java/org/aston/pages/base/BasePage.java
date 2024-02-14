@@ -1,6 +1,5 @@
 package org.aston.pages.base;
 
-import org.openqa.selenium.By;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
 import org.openqa.selenium.support.ui.ExpectedConditions;
@@ -22,12 +21,6 @@ public class BasePage {
     }
 
     public WebElement waitElementIsVisible(WebElement element){
-        new WebDriverWait(driver, Duration.ofSeconds(EXPLICIT_WAIT)).until(ExpectedConditions.visibilityOf(element));
-        return element;
+        return  new WebDriverWait(driver, Duration.ofSeconds(EXPLICIT_WAIT)).until(ExpectedConditions.visibilityOf(element));
     }
-
-    public WebElement getWebElementById(String id){
-        return driver.findElement(By.id(id));
-    }
-
 }

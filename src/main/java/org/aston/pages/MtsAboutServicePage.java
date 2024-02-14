@@ -1,4 +1,4 @@
-package org.aston.pages.mtsAboutServicePage;
+package org.aston.pages;
 
 import org.aston.pages.base.BasePage;
 import org.openqa.selenium.By;

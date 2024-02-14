@@ -2,8 +2,6 @@ package testMtsSite;
 
 import base.BaseTest;
 import org.aston.utils.StringUtils;
-import org.openqa.selenium.By;
-import org.openqa.selenium.WebElement;
 import org.testng.Assert;
 import org.testng.annotations.*;
 
@@ -13,7 +11,7 @@ public class LessonThirteenSeleniumTest extends BaseTest {
 
     @Test(priority = 1, testName = "Проверка заголовка онлайн пополнения")
     public void testCheckPayWrapperHeader(){
-       Assert.assertEquals(StringUtils.deleteSpacesAndLineBreak(mtsHomePage.getPayWrapperHeader()), "Онлайн пополнение без комиссии");
+       Assert.assertEquals(StringUtils.deleteSpacesAndLineBreak(mtsHomePage.getPayWrapperHeaderText()),"Онлайн пополнение без комиссии");
     }
 
     @DataProvider(name = "partnersBannersName")
@@ -23,18 +21,16 @@ public class LessonThirteenSeleniumTest extends BaseTest {
 
     @Test(priority = 1, testName = "Проверка наличия баннеров партнеров", dataProvider = "partnersBannersName")
     public void testCheckPartnersBanner(String bannerName){
-        WebElement banner = driver.findElement(By.cssSelector("img[alt='" + bannerName + "']"));
-        Assert.assertTrue(banner.isDisplayed());
+        Assert.assertTrue(mtsHomePage.isDisplayedIconByBannerName(bannerName));
     }
 
-
-    @Test(priority = 2, testName = "Проверка работоспособности ссылки 'Подробнее о сервисе'")
+    @Test(priority = 3, testName = "Проверка работоспособности ссылки 'Подробнее о сервисе'")
     public void testCheckLinkInPayWrapper() {
         mtsHomePage.clickLinksMoreAboutService();
         Assert.assertEquals(mtsAboutServicePage.getMainHeader(), "Оплата банковской картой");
     }
 
-    @Test(priority = 3, testName = "Проверка работоспособности формы пополнения счёта")
+    @Test(priority = 2, testName = "Проверка работоспособности формы пополнения счёта")
     public void testReplenishmentAccount(){
         mtsHomePage
                 .enterPhoneNumber()
@@ -42,5 +38,6 @@ public class LessonThirteenSeleniumTest extends BaseTest {
                 .clickContinueBtn()
                 .switchOnPaymentFrame();
         Assert.assertEquals("Оплата: Услуги связи Номер:375" + PHONE_NUMBER, StringUtils.deleteSpacesAndLineBreak(mtsHomePage.getPaymentFrameHeaderInfo()));
+        mtsHomePage.closePaymentFrame();
     }
 }
