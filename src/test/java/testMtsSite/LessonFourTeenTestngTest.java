@@ -25,9 +25,9 @@ public class LessonFourTeenTestngTest extends BaseTest {
     public void testInputPlaceholdersPaymentFormById(String firstPlaceholderValue, String secondPlaceholderValue, String thirtyPlaceholderValue,
                                                      String firstInputId, String secondInputId, String thirtyInputId)
     {
-        Assert.assertEquals(mtsHomePage.getWebElementById(firstInputId).getAttribute("placeholder"), firstPlaceholderValue);
-        Assert.assertEquals(mtsHomePage.getWebElementById(secondInputId).getAttribute("placeholder"), secondPlaceholderValue);
-        Assert.assertEquals(mtsHomePage.getWebElementById(thirtyInputId).getAttribute("placeholder"), thirtyPlaceholderValue);
+        Assert.assertEquals(mtsHomePage.getPlaceholderWebElementById(firstInputId), firstPlaceholderValue);
+        Assert.assertEquals(mtsHomePage.getPlaceholderWebElementById(secondInputId), secondPlaceholderValue);
+        Assert.assertEquals(mtsHomePage.getPlaceholderWebElementById(thirtyInputId), thirtyPlaceholderValue);
     }
 
 
@@ -42,10 +42,10 @@ public class LessonFourTeenTestngTest extends BaseTest {
         Assert.assertEquals(StringUtils.returnOnlyAmountPayValue(mtsHomePage.getPaymentFrameHeaderAmount()), AMOUNT_PAYMENT);
         Assert.assertEquals(StringUtils.returnOnlyAmountPayValue(mtsHomePage.getButtonPayFrameText()), AMOUNT_PAYMENT);
         Assert.assertEquals(StringUtils.returnOnlyAmountPayValue(mtsHomePage.getPaymentFrameHeaderInfo()), "375" + PHONE_NUMBER);
-        Assert.assertEquals(mtsHomePage.getInputCardNumberFrameText(), "Номер карты");
-        Assert.assertEquals(mtsHomePage.getInputValidityPeriodFrameText(), "Срок действия");
-        Assert.assertEquals(mtsHomePage.getInputCVCFrameText(), "CVC");
-        Assert.assertEquals(mtsHomePage.getInputOwnerNameFrame(), "Имя держателя (как на карте)");
+        Assert.assertEquals(mtsHomePage.getInputFrameTextByName("cardNumber"), "Номер карты");
+        Assert.assertEquals(mtsHomePage.getInputFrameTextByName("validityPeriodFrame"), "Срок действия");
+        Assert.assertEquals(mtsHomePage.getInputFrameTextByName("cvcFrame"), "CVC");
+        Assert.assertEquals(mtsHomePage.getInputFrameTextByName("ownerNameFrame"), "Имя держателя (как на карте)");
     }
 
     @Test(testName = "Проверка иконок партнёров внутри фрейма 'Оплата: Услуги связи'")
@@ -57,11 +57,11 @@ public class LessonFourTeenTestngTest extends BaseTest {
                 .switchOnPaymentFrame();
 
         SoftAssert softAssert = new SoftAssert();
-        softAssert.assertTrue(basePage.waitElementIsVisible(mtsHomePage.getMastercardIconFrame()).isDisplayed(), "Логотип Mastercard не отображается");
-        softAssert.assertTrue(basePage.waitElementIsVisible(mtsHomePage.getVisaIconFrame()).isDisplayed(), "Логотип Visa не отображается");
-        softAssert.assertTrue(basePage.waitElementIsVisible(mtsHomePage.getBelkartIconFrame()).isDisplayed(), "Логотип Belkart не отображается");
-        softAssert.assertTrue(basePage.waitElementIsVisible(mtsHomePage.getMirIconFrame()).isDisplayed(), "Логотип Mir не отображается");
-        softAssert.assertTrue(basePage.waitElementIsVisible(mtsHomePage.getMaestroIconFrame()).isDisplayed(), "Логотип Maestro не отображается");
+        softAssert.assertTrue(mtsHomePage.isDisplayedIconFrameBySrc("mastercard"), "Логотип Mastercard не отображается");
+        softAssert.assertTrue(mtsHomePage.isDisplayedIconFrameBySrc("visa"), "Логотип Visa не отображается");
+        softAssert.assertTrue(mtsHomePage.isDisplayedIconFrameBySrc("belkart"), "Логотип Belkart не отображается");
+        softAssert.assertTrue(mtsHomePage.isDisplayedIconFrameBySrc("mir"), "Логотип Mir не отображается");
+        softAssert.assertTrue(mtsHomePage.isDisplayedIconFrameBySrc("maestro"), "Логотип Maestro не отображается");
         softAssert.assertAll();
     }
 }

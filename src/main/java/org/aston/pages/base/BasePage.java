@@ -26,8 +26,8 @@ public class BasePage {
         return element;
     }
 
-    public WebElement getWebElementById(String id){
-        return driver.findElement(By.id(id));
+    public String getPlaceholderWebElementById(String id){
+        return driver.findElement(By.id(id)).getAttribute("placeholder");
     }
 
 }
