@@ -5,7 +5,7 @@ import org.testng.annotations.Test;
 import static org.hamcrest.Matchers.equalTo;
 
 public class PostmanRequestMethodsTest extends BaseTest{
-    @Test
+    @Test(testName = "Тестовый запрос Get")
     public void testGetRequest(){
         baseRequestSpec
                 .pathParam("name", tom.getName())
@@ -15,7 +15,7 @@ public class PostmanRequestMethodsTest extends BaseTest{
                 .body("args.name", equalTo(tom.getName()));
     }
 
-    @Test
+    @Test(testName = "Тестовый запрос Post")
     public void testPostRequest(){
         baseRequestSpec
                 .body(tom)
@@ -26,7 +26,7 @@ public class PostmanRequestMethodsTest extends BaseTest{
                 .body("json.job", equalTo(tom.getJob()));
     }
 
-    @Test
+    @Test(testName = "Тестовый запрос PUT")
     public void testPutRequest(){
         baseRequestSpec
                 .body(tom)
@@ -37,7 +37,7 @@ public class PostmanRequestMethodsTest extends BaseTest{
                 .body("json.job", equalTo(tom.getJob()));
     }
 
-    @Test
+    @Test(testName = "Тестовый запрос Patch")
     public void testPatchRequest(){
         baseRequestSpec
                 .body(tom)
@@ -48,7 +48,7 @@ public class PostmanRequestMethodsTest extends BaseTest{
                 .body("json.job", equalTo(tom.getJob()));
     }
 
-    @Test
+    @Test(testName = "Тестовый запрос Delete")
     public void testDeleteRequest(){
         baseRequestSpec
                 .body(tom)
