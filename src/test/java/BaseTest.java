@@ -1,23 +1,19 @@
 import io.appium.java_client.android.AndroidDriver;
 import io.appium.java_client.android.AndroidElement;
 
-import org.aston.pages.DriverInstance;
-import org.aston.pages.MainPage;
-import org.openqa.selenium.support.PageFactory;
+
+import org.aston.common.CommonAction;
+import org.aston.pages.MainAppCalcPage;
 import org.testng.annotations.AfterClass;
-import org.testng.annotations.BeforeClass;
+
 
 public class BaseTest {
-    protected static AndroidDriver<AndroidElement> driver;
-    protected MainPage mainPage = PageFactory.initElements(driver, MainPage.class);
-
-    @BeforeClass
-    public static void setup() {
-        driver = DriverInstance.getDriver();
-    }
+    protected AndroidDriver<AndroidElement> driver = CommonAction.createAndroidDriver();
+    protected MainAppCalcPage mainAppCalcPage = new MainAppCalcPage(driver);
 
     @AfterClass
     public static void teardown() {
-        DriverInstance.quit();
+        CommonAction.quitDriver();
     }
+
 }
