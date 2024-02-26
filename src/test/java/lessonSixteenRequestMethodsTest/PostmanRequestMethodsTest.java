@@ -1,10 +1,13 @@
 package lessonSixteenRequestMethodsTest;
 
 
+import org.aston.lessonSixteen.Person;
 import org.testng.annotations.Test;
 import static org.hamcrest.Matchers.equalTo;
 
 public class PostmanRequestMethodsTest extends BaseTest{
+    private Person tom = new Person("Tom", "Salesforce developer");
+
     @Test(testName = "Тестовый запрос Get")
     public void testGetRequest(){
         baseRequestSpec
